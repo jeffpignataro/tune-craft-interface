@@ -16,6 +16,14 @@ export default defineConfig(({ mode }) => ({
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
+    allowedHosts: [
+      "localhost",
+      "::1",
+      "127.0.0.1",
+      "api.firesvle.com",
+      ".ngrok-free.app",
+      "jdpconsulting.tech",
+    ],
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
