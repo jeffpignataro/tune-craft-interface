@@ -47,9 +47,9 @@ export async function fetchSong(params: SongParams = {}, timeoutMs = 10000): Pro
       headers: { accept: "text/plain" },
       signal: controller.signal,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     clearTimeout(timer);
-    if (err?.name === "AbortError") {
+    if (err && typeof err === "object" && "name" in err && (err as { name?: string }).name === "AbortError") {
       throw new Error("Song request timed out");
     }
     throw err;
